@@ -3,12 +3,22 @@ import User from "../../model/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { ILoginReq, RequestBody } from "../../interface/request";
+import { validationResult } from "express-validator";
 
 export const loginUser = async (
   req: RequestBody<ILoginReq>,
   res: Response,
   next: NextFunction
 ) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      success: false,
+      errors: errors.array()[0].msg,
+    });
+  }
+
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
