@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { ILoginReq, RequestBody } from "../../interface/request";
 import { validationResult } from "express-validator";
 import { IUser } from "../../interface/models";
+import { SECRET_KEY } from "../../constants";
 
 export const loginUser = async (
   req: RequestBody<ILoginReq>,
@@ -35,7 +36,8 @@ export const loginUser = async (
       return res.status(401).json({ error: "Invalid credentials" });
     }
     // Generate JWT token
-    const token = jwt.sign({ email }, "secret");
+    const token = jwt.sign({ email, id: user?._id }, SECRET_KEY);
+
     res.status(200).json({
       user: { _id: user?._id, name: user?.name, email: user?.email },
       token,

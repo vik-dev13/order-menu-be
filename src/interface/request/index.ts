@@ -12,3 +12,15 @@ export interface IRegisterReq {
   email: string;
   password: string;
 }
+
+export interface ICreateShopReq {
+  adminId: string;
+  name: string;
+  address: {
+    full_address?: string;
+    city: string;
+    state: string;
+    country: string;
+    pinCode: string;
+  };
+}

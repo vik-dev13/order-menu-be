@@ -9,6 +9,7 @@ const shopSchema: Schema = new mongoose.Schema<IShop>({
   created_date: {
     type: Date,
     required: true,
+    default: Date.now,
   },
   address: {
     full_address: {
