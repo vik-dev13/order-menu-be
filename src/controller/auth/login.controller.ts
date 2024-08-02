@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { ILoginReq, RequestBody } from "../../interface/request";
 import { validationResult } from "express-validator";
+import { IUser } from "../../interface/models";
 
 export const loginUser = async (
   req: RequestBody<ILoginReq>,
@@ -21,7 +22,7 @@ export const loginUser = async (
 
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user: IUser = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: "User not found" });
     }
@@ -35,8 +36,12 @@ export const loginUser = async (
     }
     // Generate JWT token
     const token = jwt.sign({ email }, "secret");
-    res.status(200).json({ token });
+    res.status(200).json({
+      user: { _id: user?._id, name: user?.name, email: user?.email },
+      token,
+    });
   } catch (err) {
+    console.log("login---", err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
