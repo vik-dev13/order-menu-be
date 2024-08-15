@@ -24,9 +24,8 @@ export const verifyToken = (
     }
     next();
   } catch (err) {
-    console.log(err);
     res.status(401).json({
-      error: "Invalid request",
+      error: err,
     });
   }
 };

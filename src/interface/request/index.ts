@@ -1,5 +1,6 @@
 export interface RequestBody<T> extends Express.Request {
   body: T;
+  query: any;
 }
 
 export interface ILoginReq {
