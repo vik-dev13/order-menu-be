@@ -19,6 +19,18 @@ export interface IAddress {
   pinCode: string;
 }
 
+export interface IMenuItem {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+  images?: string[];
+  rating?: string;
+  createdDate: Date;
+  isVeg: boolean;
+  isBestSeller?: boolean;
+}
+
 export interface IShop {
   _id: string;
   name: string;
