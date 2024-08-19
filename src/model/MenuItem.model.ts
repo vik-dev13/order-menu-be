@@ -3,6 +3,10 @@ import { IMenuItem } from "../interface/models/index";
 
 const menuItemsSchema: Schema = new mongoose.Schema<IMenuItem>({
   name: String,
+  shopId: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Shop",
+  },
   description: String,
   images: [String],
   isVeg: Boolean,

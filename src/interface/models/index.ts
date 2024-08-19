@@ -21,6 +21,7 @@ export interface IAddress {
 
 export interface IMenuItem {
   _id: string;
+  shopId: mongoose.Types.ObjectId;
   name: string;
   description: string;
   price: number;
