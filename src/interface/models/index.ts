@@ -36,6 +36,7 @@ export interface IShop {
   name: string;
   created_date: Date;
   address: IAddress;
+  menu: [IMenuItem];
   admin: mongoose.Types.ObjectId;
   workers: [mongoose.Types.ObjectId];
   last_modified: Date;

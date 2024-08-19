@@ -28,6 +28,12 @@ const shopSchema: Schema = new mongoose.Schema<IShop>({
       type: String,
     },
   },
+  menu: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "MenuItem",
+    },
+  ],
   admin: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
