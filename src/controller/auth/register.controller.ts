@@ -17,7 +17,6 @@ export const registerUser = async (
       errors: errors.array()[0].msg,
     });
   }
-
   const { name, email, password } = req.body;
   try {
     let existingUser = await User.findOne({ email });
